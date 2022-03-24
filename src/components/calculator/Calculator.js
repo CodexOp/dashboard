@@ -18,8 +18,12 @@ const Calculator = () => {
   let finalTokens = 0;
 
   React.useEffect(() => {
-    getPrice()
-    getBalance()
+    try{
+      getPrice()
+      getBalance()
+    } catch (error){
+      console.log(error);
+    }
   }, []);
 
   function handleChange(event) {
