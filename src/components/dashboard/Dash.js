@@ -178,7 +178,7 @@ const Dash = () => {
             <h2>Market Cap</h2>
             </div>
             <div className="card_value">
-             <h2>${totalSupply * price}</h2>
+             <h2>${(totalSupply * price).toFixed(2)}</h2>
             </div>
           </div>
         </div>
@@ -188,7 +188,7 @@ const Dash = () => {
             <h2>Circulating Supply</h2>
             </div>
             <div className="card_value">
-             <h2>{0.8636 * totalSupply}</h2>
+             <h2>{(0.8636 * totalSupply).toFixed(2)}</h2>
             </div>
           </div>
         </div>
@@ -218,7 +218,7 @@ const Dash = () => {
             <h2>Total Supply</h2>
             </div>
             <div className="card_value">
-             <h2>{totalSupply}</h2>
+             <h2>{totalSupply.toFixed(2)}</h2>
             </div>
           </div>
         </div>
@@ -306,7 +306,7 @@ const Dash = () => {
             <h2>$ Value of Firepit</h2>
             </div>
             <div className="card_value">
-             <h2>${firepit * price}</h2>
+             <h2>${(firepit * price).toFixed(2)}</h2>
             </div>
           </div>
       </div>

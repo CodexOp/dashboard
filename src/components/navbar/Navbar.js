@@ -68,24 +68,6 @@ function classNames(...classes) {
 }
 
 
-async function connectMeta(){
-  try{
-   if (typeof window.ethereum !== 'undefined') {
-     console.log('MetaMask is installed!');
-   }else console.log ("Shit man")
-   console.log("Connecting to metamask");
-   provider = new ethers.providers.Web3Provider(window.ethereum);
-   await provider.send("eth_requestAccounts", []).catch((error) => {
-       console.log(error);
-   })
-   signer = provider.getSigner();
-   const walletAddress = await signer.getAddress();
-   console.log(walletAddress);
- } catch (error) {
-   console.log(error);
- }
- getPrice()
-}
 
 async function getPrice(){
   let rpcUrl = "https://bsc-dataseed1.defibit.io/";
@@ -112,10 +94,34 @@ async function getPrice(){
 export default function Navbar() {
     const [value, setValue] = React.useState(0);
     const [close, setclose] = React.useState();
+    let [address, setAddress]= React.useState("Connect Wallet");
+
     React.useEffect(() => {
+      connectMeta();
       getPrice()
     }, []);
 
+    let websiteUrl = "https://amberprotocol.io/";
+
+    async function connectMeta(){
+      try{
+       if (typeof window.ethereum !== 'undefined') {
+         console.log('MetaMask is installed!');
+       }else console.log ("Shit man")
+       console.log("Connecting to metamask");
+       provider = new ethers.providers.Web3Provider(window.ethereum);
+       await provider.send("eth_requestAccounts", []).catch((error) => {
+           console.log(error);
+       })
+       signer = provider.getSigner();
+       const walletAddress = await signer.getAddress();
+       setAddress(walletAddress.slice(0, 6)+ "...");
+       console.log(walletAddress);
+     } catch (error) {
+       console.log(error);
+     }
+     getPrice()
+    }
 
 
   const handleChange = (event, newValue) => {
@@ -141,16 +147,19 @@ export default function Navbar() {
               </div>
               <div className="flex-1 flex items-center justify-start  sm:items-stretch sm:justify-start transition-property: all transition-duration:150ms">
                 <div className="flex-shrink-0 flex items-center">
+                <a href= {websiteUrl}>
                   <img
                     className="block lg:hidden h-8 w-auto pl-10"
                     src={logo}
+                    href= {websiteUrl}
                     alt="Workflow"
-                  />
-                  <img
+                  /></a>
+                  <a href= {websiteUrl}><img
                     className="hidden lg:hidden h-8 w-auto "
                     src={logo}
+                    href= {websiteUrl}
                     alt="Workflow"
-                  />
+                  /></a>
                 </div>
             
               </div>
@@ -164,7 +173,7 @@ export default function Navbar() {
                 <button
                 className='text-[#54F7CF] rounded-lg font-semibold	p-2 px-4 bg-[#333333] hover:bg-[#fff] hover:ease-in duration-300 hover:text-[#000] ml-2'
                 onClick= {connectMeta}
-                >Connect Wallet</button>
+                >{address}</button>
               </div>
             </div>
           </div>
@@ -172,7 +181,7 @@ export default function Navbar() {
 
           <Disclosure.Panel className="lg:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1">
-                        <img src={logo} alt='logo' className='logo'/>
+            <a href= {websiteUrl}><img src={logo} alt='logo' className='logo'/></a>
 
             <Tabs 
         orientation="vertical"
@@ -219,7 +228,8 @@ export default function Navbar() {
 
 <div className='left_navbar'>
   <div className="trui">
-<img src={logo} alt='logo' className='logo'/>
+  <a href= {websiteUrl}>
+<img src={logo} alt='logo' className='logo'/></a>
 
       <Tabs
         orientation="vertical"

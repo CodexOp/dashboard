@@ -110,6 +110,8 @@ const Account = () => {
             <div className="card_value card_value_acc">
              <h2>${balance* (parseFloat(price).toFixed(2))}</h2>
             </div>
+            <div className='card_title'>
+            <h2>{balance} AMBR</h2></div>
           </div>
       </div>
 
@@ -121,6 +123,9 @@ const Account = () => {
             <div className="card_value card_value_acc">
              <h2>388,047%</h2>
             </div>
+            <div className='card_title'>
+              <h2>Daild ROI 2.289%</h2>
+            </div>
           </div>
       </div>
         <div className='inner_block3'>
@@ -131,6 +136,8 @@ const Account = () => {
             <div className="card_value card_value_acc">
              <h2>00:{parseInt(rebaseTime/60)}:{rebaseTime%60}</h2>
             </div>
+            <div className='card_title'>
+            <h2>You will earn money soon</h2></div>
           </div>
       </div>
 

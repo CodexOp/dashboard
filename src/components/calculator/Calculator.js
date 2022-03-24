@@ -196,7 +196,7 @@ const Calculator = () => {
             </div>
 
             <div className='value value_calculator'>
-            <h2>{finalTokens- tokenAmount} Token</h2>
+            <h2>{(finalTokens- tokenAmount).toFixed(3)} Token</h2>
             </div>
           </div>
 
@@ -208,7 +208,7 @@ const Calculator = () => {
             </div>
 
             <div className='value value_calculator'>
-            <h2>${finalTokens* futurePrice}</h2>
+            <h2>${(finalTokens* futurePrice).toFixed(3)}</h2>
             </div>
           </div>
 
